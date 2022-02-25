@@ -496,7 +496,7 @@ header{
 .my-services{
     max-width: 100%;
     background-color: var(--clr-dark);
-    background-image: url(static/images/Background/knife.png);
+    background-image: url(knife.png);
     background-size: cover; /*to prevent repetition of images*/
     color: var(--clr-light);
     text-align: center;
