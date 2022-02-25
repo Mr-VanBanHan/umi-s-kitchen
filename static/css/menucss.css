@@ -1,0 +1,787 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+/* these are like variables! u can set values to it so u dont have to 
+change a lot */
+:root{
+    --ff--primary: 'Poppins', sans-serif;
+    --ff--secondary: 'Poppins', monospace;
+    
+
+    --fw-reg: 300;
+    --fw-bold: 900;
+
+    --clr-light: #fff;
+    --clr-lightdark: #ddddc9;
+    --clr-dark: #303030;
+    --clr-accent: #d9d959;
+
+    --fs-h1: 3rem;
+    --fs-h2: 2.25rem;
+    --fs-h3: 1.5rem;
+    --fs-body: 1rem;
+
+    --bs: 0.25em 0.25em 0.75em rgba(0,0,0,.25),
+        0.125em 0.125em 0.25em rgba(0,0,0,.15);
+
+
+    --width-img: 37em;
+}
+
+/* same thing here */
+@media (min-width:800px) {
+    :root{
+        --fs-h1: 4.5rem;
+        --fs-h2: 3.75rem;
+        --fs-h3: 2.5rem;
+        --fs-body: 1.125rem;
+    }
+}
+
+@media (max-width:420px) {
+    :root{
+        --fs-h1: 2.8rem;
+        --fs-h2: 2.05rem;
+        --fs-h3: 1.15rem;
+        --fs-body: 1rem;
+    }
+}
+
+
+body{
+    background: var(--clr-light);
+    color:var(--clr-dark);
+    margin:0;
+    font-family: var(--ff--primary);
+    font-size: var(--fs-body);
+    line-height:1.6;
+}
+
+section{
+    padding: 5em 2em;
+}
+
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+strong{ 
+    font-weight:var(--fw-bold);
+}
+
+:focus{
+    outline: 3px solid var(--clr-accent);
+    outline-offset: 3px;
+}
+
+.btn{
+    display: inline-block;
+    padding: .5em 1.5em;
+    background: var(--clr-accent);
+    color: var(--clr-dark);
+    text-decoration:none ;
+    cursor: pointer;
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: var(--fw-bold);
+    transition: transform 200ms ease-in-out;
+}
+
+.btn:hover{
+    transform:scale(1.1);
+}
+
+h1,
+h2,
+h3{
+    line-height:1.2;
+    margin:0;
+}
+
+
+h1 { font-size: var(--fs-h1);}
+h2 { font-size: var(--fs-h2);}
+h3 { font-size: var(--fs-h3);}
+
+
+
+
+
+
+/*header*/
+
+header{ 
+    display:flex;
+    justify-content: space-between;
+    padding: 1em;
+    background-color: rgba(0,0,0,0.8);
+    padding-bottom: 1.5em;
+
+}
+
+
+.nav{
+    position: fixed;
+    background: var(--clr-dark);
+    color: var(--clr-light);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index:100;
+
+    transform: translateX(100%);
+    transition: transform 250ms cubic-bezier(.5,0,.5,1);
+
+}
+
+.nav__list{
+    
+    list-style:none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav__link{
+    color: inherit;
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-bold);
+    text-decoration: none;
+}
+
+.nav__link:hover{
+    color: var(--clr-accent);
+}
+
+
+.nav-toggle{
+    padding: .5em;
+    background: transparent;
+    border: 0;
+    cursor:pointer;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    z-index: 1000;
+}
+
+
+
+.nav-open .nav{
+    transform:translateX(0);
+}
+
+
+.nav-open .nav-toggle{
+    position: fixed;
+}
+
+
+.nav-open .hamburger{
+    transform: rotate(.625turn);
+}
+
+.nav-open .hamburger::before{
+    transform:rotate(90deg) translateX(7px);
+}
+
+.nav-open .hamburger::after{
+    opacity: 0;
+}
+
+
+.hamburger{
+    display: block;
+    position: relative;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after{
+    background: var(--clr-accent);
+    width: 2.5em;
+    height: 3px;
+    border-radius: 1em;
+    transition: transform 250ms ease-in-out;
+}
+
+.hamburger::before,
+.hamburger::after{
+    content: '';
+    position:absolute;
+    left: 0;
+    right: 0;
+}
+
+
+.hamburger::after{
+    top:7px
+}
+
+.hamburger::before{
+    bottom: 7px;
+}
+
+
+
+
+
+
+
+
+
+/*Carousel*/
+
+@media (max-width: 849px){
+    #Carou-last,
+    #Carou-img1,
+    #Carou-img2,
+    #Carou-img3,
+    #Carou-img4,
+    #Carou-img5,
+    #Carou-first
+    {
+        width: 20em;
+        
+    }
+
+    .carousel-container{
+        width:20em ;
+        margin:0px;
+        margin-top: 4em;
+        margin-bottom: 4em;
+        overflow: hidden;
+        box-shadow: var(--bs);
+    }
+
+    #prevbutton{
+        z-index: 10;
+        font-size: 100%;
+        color: black;
+        cursor: pointer;
+        padding-right: 0.5em;
+    }
+    
+    #nextbutton{
+        z-index: 10;
+        font-size: 100%;
+        color: black;
+        cursor: pointer;
+        padding-left: 0.5em;
+    }
+}
+
+@media (min-width: 850px){
+#Carou-last,
+#Carou-img1,
+#Carou-img2,
+#Carou-img3,
+#Carou-img4,
+#Carou-img5,
+#Carou-first
+{
+    width: 25em;
+    
+}
+
+.carousel-container{
+    width: 25em ;
+    margin:0px;
+    overflow: hidden;
+    margin-top: 4em;
+    margin-bottom: 4em;
+    box-shadow: var(--bs);
+}
+
+#prevbutton{
+    z-index: 10;
+    font-size: 100%;
+    color: black;
+    cursor: pointer;
+    padding-right: 5em;
+}
+
+#nextbutton{
+    z-index: 10;
+    font-size: 100%;
+    color: black;
+    cursor: pointer;
+    padding-left: 5em;
+}
+
+}
+
+
+.carousel-slide{
+    display: flex;
+    width: 100%;
+
+
+}
+
+
+
+.carousel-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--clr-light);
+    padding-top:2em;
+    padding-bottom:2em;
+}
+
+
+
+
+ /*Categories*/
+
+@media (min-width:550px){
+    .Category{
+        max-width: 100%;
+        background: var(--clr-dark);
+        display: flex;
+        justify-content: center;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+     }
+    .Cat-item2{
+        margin-left: 3em;
+    }
+   
+    .Cat-item3{
+       margin-left: 3em;
+   }
+
+}
+
+@media (max-width:549px){
+    .Category{
+        max-width: 100%;
+        background: var(--clr-dark);
+        display: flex;
+        justify-content: center;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        column-gap: 1em;
+     }
+
+}
+
+
+
+ 
+
+
+ .Cat-item1,
+ .Cat-item2,
+ .Cat-item3
+ {
+     cursor: pointer;
+     width: min-content;
+     padding-left: 0.5em;
+     padding-right: 0.5em;
+     background-color: var(--clr-accent);
+     box-shadow: var(--bs);
+     font-size: var(--fs-h3);
+     
+ }
+
+
+ .Cat-title{
+     text-align: center;
+     font-weight: bold;
+ }
+
+
+.wrapperCat{
+    background: var(--clr-lightdark);
+}
+
+ /*CATERING*/
+
+ .image-cat{
+    width: 18em;
+    margin: 0 auto;
+    margin-top: 2em;
+    box-shadow: var(--bs);
+}
+ /*use js to change display to none when other buttons are clicked*/
+
+ @media (min-width: 1750px) {
+    .Catering-Cat{
+        width:min-content;
+        display:grid;
+        margin: 0 auto;
+        background-color: var(--clr-lightdark);
+        grid-template-columns: 2em 27em 27em 27em 2em;
+        grid-template-rows: 5em 48em 48em 2em;
+        column-gap: 3em;
+        row-gap: 3em;
+        grid-template-areas: 
+        ". . title . ."
+        ". food1 food2 food3 ."
+        ". food4 food5 food6 ."
+        '. . . . .'
+    } 
+ }
+
+ @media (max-width: 1749px) {
+    .Catering-Cat{
+        width:min-content;
+        display:grid;
+        margin: 0 auto;
+        background-color: var(--clr-lightdark);
+        grid-template-columns: 0.1em 27em 27em 0.1em;
+        grid-template-rows: 5em 47em 47em 2em;
+        column-gap: 3em;
+        row-gap: 3em;
+        grid-template-areas: 
+        ". title title  ."
+        ". food1 food2 ."
+        ". food3 food4 ."
+        '. . . .';
+    } 
+ }
+
+ @media (max-width: 1200px) {
+    .Catering-Cat{
+        width:min-content;
+        display:grid;
+        margin: 0 auto;
+        background-color: var(--clr-lightdark);
+        grid-template-columns: 2em 27em 2em;
+        grid-template-rows: 5em 47em 47em 47em 47em 2em;
+        column-gap: 3em;
+        row-gap: 3em;
+        grid-template-areas: 
+        ". title ."
+        ". food1 ."
+        ". food2 ."
+        ". food3 ."
+        ". food4 ."
+        '. . .';
+    } 
+ }
+
+ @media (max-width:600px) {
+    .Catering-Cat{
+        width:min-content;
+        display:grid;
+        margin: 0 auto;
+        background-color: var(--clr-lightdark);
+        grid-template-columns: 0.1em 21em 0.1em;
+        grid-template-rows: 5em 45em 45em 45em 45em 2em;
+        column-gap: 0.1em;
+        row-gap: 2.5em;
+        grid-template-areas: 
+        ". title ."
+        ". food1 ."
+        ". food2 ."
+        ". food3 ."
+        ". food4 ."
+        '. . .';
+    } 
+    .image-cat{
+        width: 18em;
+        margin: 0 auto;
+        margin-top: 2em;
+        box-shadow: var(--bs);
+    }
+ }
+
+ .foodtitle{
+     text-align: center;
+     font-weight: 1000;
+ }
+ .Section-Cat-title{
+     grid-area: title;
+     text-align: center;
+     margin-top: .5em;
+ }
+ .Nasi-Goreng{
+     grid-area:food1 ;
+     background-color: var(--clr-light);
+ }
+
+ .NasiChinese-Goreng{
+     grid-area:food2;
+     background-color: var(--clr-light);
+ }
+ .Mee-Goreng{
+     grid-area:food3;
+     background-color: var(--clr-light);
+ }
+
+ .KeowTeow-Goreng{
+     grid-area: food4;
+     background-color: var(--clr-light);
+ }
+
+.catering-description{
+    width: 15em;
+    margin-left: 5em;
+}
+
+
+
+ /* DESSERTS*/
+
+ @media (min-width: 1750px) {
+    .Dessert-Cat{
+        width:min-content;
+        display:none;
+        margin: 0 auto;
+        background-color: var(--clr-lightdark);
+        grid-template-columns: 2em 27em 27em 27em 2em;
+        grid-template-rows: 5em 48em 48em 2em;
+        column-gap: 3em;
+        row-gap: 3em;
+        grid-template-areas: 
+        ". . title . ."
+        ". food1 food2 food3 ."
+        ". food4 food5 food6 ."
+        '. . . . .';
+    } 
+ }
+
+ @media (max-width: 1749px) {
+    .Dessert-Cat{
+        width:min-content;
+        display:none;
+        margin: 0 auto;
+        background-color: var(--clr-lightdark);
+        grid-template-columns: 0.1em 27em 27em 0.1em;
+        grid-template-rows: 5em 47em 47em 2em;
+        column-gap: 3em;
+        row-gap: 3em;
+        grid-template-areas: 
+        ". title title  ."
+        ". food1 food2 ."
+        ". food3 food4 ."
+        '. . . .';
+    } 
+ }
+
+ @media (max-width: 1200px) {
+    .Dessert-Cat{
+        width:min-content;
+        display:none;
+        margin: 0 auto;
+        background-color: var(--clr-lightdark);
+        grid-template-columns: 2em 27em 2em;
+        grid-template-rows: 5em 47em 47em 47em 47em 2em;
+        column-gap: 3em;
+        row-gap: 3em;
+        grid-template-areas: 
+        ". title ."
+        ". food1 ."
+        ". food2 ."
+        ". food3 ."
+        ". food4 ."
+        '. . .';
+    } 
+ }
+
+ @media (max-width:600px) {
+    .Dessert-Cat{
+        width:min-content;
+        display:none;
+        margin: 0 auto;
+        background-color: var(--clr-lightdark);
+        grid-template-columns: 0.1em 21em 0.1em;
+        grid-template-rows: 5em 45em 45em 45em 45em 2em;
+        column-gap: 0.1em;
+        row-gap: 2.5em;
+        grid-template-areas: 
+        ". title ."
+        ". food1 ."
+        ". food2 ."
+        ". food3 ."
+        ". food4 ."
+        '. . .';
+
+    }}
+ 
+.NutellaTart{
+    grid-area:food1 ;
+    background-color: var(--clr-light);
+}
+
+
+.NutellaDonut{
+    grid-area:food2 ;
+    background-color: var(--clr-light);
+}
+
+
+.CheeseDonut{
+    grid-area:food3 ;
+    background-color: var(--clr-light);
+}
+
+
+.Brownie{
+    grid-area:food4 ;
+    background-color: var(--clr-light);
+}
+
+
+
+
+
+
+
+
+/*Traditional*/
+@media (min-width: 1750px) {
+    .Traditional-Cat{
+        width:min-content;
+        display:none;
+        margin: 0 auto;
+        background-color: var(--clr-lightdark);
+        grid-template-columns: 2em 27em 27em 27em 2em;
+        grid-template-rows: 5em 48em 48em 2em;
+        column-gap: 3em;
+        row-gap: 3em;
+        grid-template-areas: 
+        ". . title . ."
+        ". food1 food2 food3 ."
+        ". food4 food5 food6 ."
+        '. . . . .';
+    } 
+ }
+
+ @media (max-width: 1749px) {
+    .Traditional-Cat{
+        width:min-content;
+        display:none;
+        margin: 0 auto;
+        background-color: var(--clr-lightdark);
+        grid-template-columns: 0.1em 27em 27em 0.1em;
+        grid-template-rows: 5em 47em 47em 2em;
+        column-gap: 3em;
+        row-gap: 3em;
+        grid-template-areas: 
+        ". title title  ."
+        ". food1 food2 ."
+        ". food3 food4 ."
+        '. . . .';
+    } 
+ }
+
+ @media (max-width: 1200px) {
+    .Traditional-Cat{
+        width:min-content;
+        display:none;
+        margin: 0 auto;
+        background-color: var(--clr-lightdark);
+        grid-template-columns: 2em 27em 2em;
+        grid-template-rows: 5em 47em 47em 47em 47em 2em;
+        column-gap: 3em;
+        row-gap: 3em;
+        grid-template-areas: 
+        ". title ."
+        ". food1 ."
+        ". food2 ."
+        ". food3 ."
+        ". food4 ."
+        '. . .';
+    } 
+ }
+
+ @media (max-width:600px) {
+    .Traditional-Cat{
+        width:min-content;
+        display:none;
+        margin: 0 auto;
+        background-color: var(--clr-lightdark);
+        grid-template-columns: 0.1em 21em 0.1em;
+        grid-template-rows: 5em 45em 45em 45em 45em 2em;
+        column-gap: 0.1em;
+        row-gap: 2.5em;
+        grid-template-areas: 
+        ". title ."
+        ". food1 ."
+        ". food2 ."
+        ". food3 ."
+        ". food4 ."
+        '. . .';
+
+    }}
+
+
+    .CurryPuff{
+        grid-area: food1;
+        background-color: var(--clr-light);
+    }
+
+    .SardinePuff{
+        grid-area: food2;
+        background-color: var(--clr-light);
+    }
+
+    .VeggiePuff{
+        grid-area: food3;
+        background-color: var(--clr-light);
+    }
+
+    .RotiKirai{
+        grid-area: food4;
+        background-color: var(--clr-light);
+    }
+
+
+ /*FOOTER*/
+
+.footer{
+    background: #111;
+    color: var(--clr-accent);
+    text-align: center;
+    padding: 2.5em 0;
+}
+
+.footer a{
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer__link{
+    font-size: var(--fs-h3);
+    font-weight: var(--fw-bold);
+}
+
+
+.footer__link:hover,
+.social-list__link:hover{
+    opacity:.7;
+}
+
+.footer__link:hover{
+    text-decoration: underline;
+}
+
+.social-list{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 2em 0;
+    padding: 0;
+}
+
+.social_list_item{
+    padding: .5em;
+}
