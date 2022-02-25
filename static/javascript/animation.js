@@ -2,6 +2,7 @@ const animationbutton = document.querySelector('.animationbutton');
 const curtainbox= document.querySelector('.blackbox');
 const body1=document.getElementsByTagName('body')[0];
 console.log(sessionStorage.length);
+console.log(sessionStorage);
 
 
 if (sessionStorage.length==1 || sessionStorage.length==0){
