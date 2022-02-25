@@ -5,7 +5,7 @@ console.log(sessionStorage.length);
 console.log(sessionStorage);
 
 
-if (sessionStorage.length==1 || sessionStorage.length==0){
+if (sessionStorage.length==0){
     gsap.fromTo('.animationtext',{y:-300,opacity:0,duration:2.5}, {y:0,opacity:1,duration:2.5})
 
 
